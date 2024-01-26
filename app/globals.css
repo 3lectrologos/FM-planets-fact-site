@@ -2,32 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.textStyle-h1 {
+  @apply font-heading;
+  @apply text-[40px] tablet:text-[48px] desktop:text-[80px];
+  @apply leading-[120%];
+  @apply font-normal uppercase
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.textStyle-h2 {
+  @apply font-heading;
+  @apply text-[20px] tablet:text-[24px] desktop:text-[40px];
+  @apply leading-[120%];
+  @apply tracking-[-0.75px] tablet:tracking-[-0.9px] desktop:tracking-[-1.5px];
+  @apply font-normal uppercase;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.textStyle-h3 {
+  @apply font-body;
+  @apply text-[9px] tablet:text-[9px] desktop:text-[12px];
+  @apply leading-[10.8px] tablet:leading-[25px] desktop:leading-[25px];
+  @apply tracking-[1.929px] tablet:tracking-[1.929px] desktop:tracking-[2.571px];
+  @apply font-bold uppercase;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.textStyle-h4 {
+  @apply font-body;
+  @apply text-[8px] tablet:text-[8px] desktop:text-[11px];
+  @apply leading-[16px] tablet:leading-[16px] desktop:leading-[25px];
+  @apply tracking-[0.727px] tablet:tracking-[0.727px] desktop:tracking-[1px];
+  @apply font-bold uppercase;
+}
+
+.textStyle-body {
+  @apply font-body;
+  @apply text-[11px] tablet:text-[11px] desktop:text-[14px];
+  @apply leading-[22px] tablet:leading-[22px] desktop:leading-[25px];
+  @apply font-normal;
 }
