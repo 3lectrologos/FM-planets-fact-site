@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+.textStyle-title {
+  @apply font-heading;
+  @apply text-[28px];
+  @apply leading-[120%];
+  @apply tracking-[-1.05px];
+  @apply font-normal uppercase;
+}
+
 .textStyle-h1 {
   @apply font-heading;
   @apply text-[40px] tablet:text-[48px] desktop:text-[80px];
@@ -20,10 +28,10 @@
 
 .textStyle-h3 {
   @apply font-body;
-  @apply text-[9px] tablet:text-[9px] desktop:text-[12px];
+  @apply text-[11px] tablet:text-[11px] desktop:text-[12px];
   @apply leading-[10.8px] tablet:leading-[25px] desktop:leading-[25px];
-  @apply tracking-[1.929px] tablet:tracking-[1.929px] desktop:tracking-[2.571px];
-  @apply font-bold uppercase;
+  @apply tracking-[2.2px] tablet:tracking-[1.929px] desktop:tracking-[2.571px];
+  @apply font-normal uppercase;
 }
 
 .textStyle-h4 {

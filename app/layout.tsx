@@ -12,7 +12,7 @@ const leagueSpartan = League_Spartan({
 })
 
 export const metadata: Metadata = {
-  title: 'Planet Fact Site',
+  title: 'Planets Fact Site',
 }
 
 export default function RootLayout({
