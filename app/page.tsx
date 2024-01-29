@@ -18,15 +18,14 @@ function FixedHeight({ height }: { height: string }) {
 
 function InfoMenu({
   planet,
+  selected,
   onSelect,
 }: {
   planet: Planet
+  selected: InfoMenuItem
   onSelect: (info: InfoMenuItem) => void
 }) {
-  const [activeInfo, setActiveInfo] = useState<InfoMenuItem>('Overview')
-
   function onClick(info: InfoMenuItem) {
-    setActiveInfo(info)
     onSelect(info)
   }
 
@@ -38,8 +37,8 @@ function InfoMenu({
             className={twMerge(
               `textStyle-h3 w-[80px] pt-5 pb-4 text-center`,
               `cursor-pointer transition-colors`,
-              item === activeInfo ? `text-white` : `text-white/50`,
-              item === activeInfo
+              item === selected ? `text-white` : `text-white/50`,
+              item === selected
                 ? `border-b-[4px] ${planetBorderColor100.get(planet)}`
                 : `border-b-[4px] ${planetBorderColor0.get(planet)}`
             )}
@@ -70,7 +69,7 @@ function Content({
 
   return (
     <div className={`flex flex-col`}>
-      <InfoMenu planet={planet} onSelect={onInfoSelect} />
+      <InfoMenu planet={planet} selected={info} onSelect={onInfoSelect} />
       <div className={`flex flex-col w-full items-center mt-24 mb-6`}>
         {info !== 'Structure' && (
           <Image
