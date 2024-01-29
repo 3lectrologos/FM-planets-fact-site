@@ -52,5 +52,30 @@ export const planetBorderColor0 = new Map<Planet, string>([
   ['Neptune', 'border-neptune/0'],
 ])
 
-export type InfoMenuItem = 'Overview' | 'Structure' | 'Surface'
-export const infoMenuItems = ['Overview', 'Structure', 'Surface'] as const
+export type InfoMenuItem = 'overview' | 'structure' | 'surface'
+export const infoMenuItems = ['overview', 'structure', 'surface'] as const
+
+export type PlanetData = {
+  name: Planet
+  overview: {
+    content: string
+    source: string
+  }
+  structure: {
+    content: string
+    source: string
+  }
+  surface: {
+    content: string
+    source: string
+  }
+  rotation: string
+  revolution: string
+  radius: string
+  temperature: string
+  images: {
+    planet: string
+    internal: string
+    geology: string
+  }
+}

@@ -44,15 +44,16 @@
 
 .textStyle-h4 {
   @apply font-body;
-  @apply text-[8px] tablet:text-[8px] desktop:text-[11px];
-  @apply leading-[16px] tablet:leading-[16px] desktop:leading-[25px];
-  @apply tracking-[0.727px] tablet:tracking-[0.727px] desktop:tracking-[1px];
-  @apply font-bold uppercase;
+  @apply text-[9.5px] tablet:text-[9.5px] desktop:text-[12px];
+  @apply leading-[13px] tablet:leading-[13px] desktop:leading-[20px];
+  @apply tracking-[1.2px] tablet:tracking-[1.2px] desktop:tracking-[1.5px];
+  @apply font-normal uppercase;
 }
 
 .textStyle-body {
   @apply font-body;
-  @apply text-[11px] tablet:text-[11px] desktop:text-[14px];
-  @apply leading-[22px] tablet:leading-[22px] desktop:leading-[25px];
-  @apply font-normal;
+  @apply text-[13px] tablet:text-[13px] desktop:text-[14px];
+  @apply leading-[23px] tablet:leading-[24px] desktop:leading-[25px];
+  @apply tracking-[0.7px] tablet:tracking-[0.7px] desktop:tracking-[1px];
+  @apply font-extralight;
 }
