@@ -53,7 +53,6 @@ export default function Structure({ data }: { data: PlanetData[] }) {
             onInfoSelect={onInfoSelect}
           />
         )}
-        <FixedHeight height={`h-12`} />
       </div>
     </div>
   )

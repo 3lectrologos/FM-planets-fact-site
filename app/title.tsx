@@ -34,18 +34,15 @@ export function HamburgerMenu({ onClick }: { onClick: (_p: Planet) => void }) {
   return (
     <ul className={`flex flex-col px-6 pt-6 pb-8 bg-background/50`} role="menu">
       {planetList.map((planet, index) => (
-        <>
-          <li
-            role="menuitem"
-            aria-label={planet}
-            onClick={() => onClick(planet)}
-          >
-            <MenuItem planet={planet} key={index} />
-          </li>
-          {index < planetList.length - 1 && (
-            <div className={`w-full h-px bg-white/10`} />
-          )}
-        </>
+        <li
+          key={index}
+          className={`${index < planetList.length - 1 ? 'after:block after:w-full after:h-px after:bg-white/10' : ''}`}
+          role="menuitem"
+          aria-label={planet}
+          onClick={() => onClick(planet)}
+        >
+          <MenuItem planet={planet} />
+        </li>
       ))}
     </ul>
   )

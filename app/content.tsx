@@ -158,6 +158,7 @@ export function Content({
       <Source source={planetData[info]['source']} />
       <FixedHeight height={`h-8`} />
       <PlanetNumbers planetData={planetData} />
+      <FixedHeight height={`h-12`} />
     </div>
   )
 }
