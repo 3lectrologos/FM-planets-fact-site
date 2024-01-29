@@ -11,6 +11,14 @@
   @apply font-normal uppercase;
 }
 
+.textStyle-menu {
+  @apply font-body;
+  @apply text-[18px];
+  @apply leading-[25px];
+  @apply tracking-[1.8px];
+  @apply font-medium uppercase;
+}
+
 .textStyle-h1 {
   @apply font-heading;
   @apply text-[40px] tablet:text-[48px] desktop:text-[80px];

@@ -2,93 +2,51 @@
 
 import { twMerge } from 'tailwind-merge'
 import { useState } from 'react'
-
-function Title({ className = '' }: { className?: string }) {
-  return (
-    <div
-      className={twMerge(
-        `flex flex-row items-center justify-between`,
-        `${className}`
-      )}
-    >
-      <h1 className={`textStyle-title`}>The planets</h1>
-      <button className={``}>
-        <HamburgerIcon />
-      </button>
-    </div>
-  )
-}
-
-function HamburgerIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17">
-      <g fill="#FFF" fillRule="evenodd">
-        <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
-      </g>
-    </svg>
-  )
-}
+import {
+  InfoMenuItem,
+  infoMenuItems,
+  Planet,
+  planetBorderColor0,
+  planetBorderColor100,
+} from '@/app/types'
+import { HamburgerMenu, Title } from '@/app/title'
+import Image from 'next/image'
 
 function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
 
-type InfoMenuItem = 'Overview' | 'Structure' | 'Surface'
-const infoMenuItems: InfoMenuItem[] = ['Overview', 'Structure', 'Surface']
+function InfoMenu({
+  planet,
+  onSelect,
+}: {
+  planet: Planet
+  onSelect: (info: InfoMenuItem) => void
+}) {
+  const [activeInfo, setActiveInfo] = useState<InfoMenuItem>('Overview')
 
-type Planet =
-  | 'Mercury'
-  | 'Venus'
-  | 'Earth'
-  | 'Mars'
-  | 'Jupiter'
-  | 'Saturn'
-  | 'Uranus'
-  | 'Neptune'
-
-const planetBorderColor100 = new Map<Planet, string>([
-  ['Mercury', 'border-mercury/100'],
-  ['Venus', 'border-venus/100'],
-  ['Earth', 'border-earth/100'],
-  ['Mars', 'border-mars/100'],
-  ['Jupiter', 'border-jupiter/100'],
-  ['Saturn', 'border-saturn/100'],
-  ['Uranus', 'border-uranus/100'],
-  ['Neptune', 'border-neptune/100'],
-])
-
-const planetBorderColor0 = new Map<Planet, string>([
-  ['Mercury', 'border-mercury/0'],
-  ['Venus', 'border-venus/0'],
-  ['Earth', 'border-earth/0'],
-  ['Mars', 'border-mars/0'],
-  ['Jupiter', 'border-jupiter/0'],
-  ['Saturn', 'border-saturn/0'],
-  ['Uranus', 'border-uranus/0'],
-  ['Neptune', 'border-neptune/0'],
-])
-
-function InfoMenu({ planet }: { planet: Planet }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+  function onClick(info: InfoMenuItem) {
+    setActiveInfo(info)
+    onSelect(info)
+  }
 
   return (
     <div className={`flex flex-col`}>
-      <div className={`w-full h-px bg-white/20`} />
       <ul className={`flex flex-row justify-between px-6`} role="menubar">
         {infoMenuItems.map((item, index) => (
           <li
             className={twMerge(
               `textStyle-h3 w-[80px] pt-5 pb-4 text-center`,
               `cursor-pointer transition-colors`,
-              index === activeIndex ? `text-white` : `text-white/50`,
-              index === activeIndex
+              item === activeInfo ? `text-white` : `text-white/50`,
+              item === activeInfo
                 ? `border-b-[4px] ${planetBorderColor100.get(planet)}`
                 : `border-b-[4px] ${planetBorderColor0.get(planet)}`
             )}
             key={index}
             role="menuitem"
             tabIndex={0}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => onClick(item)}
           >
             {item}
           </li>
@@ -99,8 +57,67 @@ function InfoMenu({ planet }: { planet: Planet }) {
   )
 }
 
+function Content({
+  planet,
+  info,
+  onInfoSelect,
+}: {
+  planet: Planet
+  info: InfoMenuItem
+  onInfoSelect: (info: InfoMenuItem) => void
+}) {
+  const planetNameLowercase = planet.toLowerCase()
+
+  return (
+    <div className={`flex flex-col`}>
+      <InfoMenu planet={planet} onSelect={onInfoSelect} />
+      <div className={`flex flex-col w-full items-center mt-24 mb-6`}>
+        {info !== 'Structure' && (
+          <Image
+            src={`/images/planet-${planetNameLowercase}.svg`}
+            alt={`Planet ${planetNameLowercase}`}
+            width={111}
+            height={111}
+          />
+        )}
+        {info === 'Structure' && (
+          <Image
+            src={`/images/planet-${planetNameLowercase}-internal.svg`}
+            alt={`Planet ${planetNameLowercase}`}
+            width={111}
+            height={111}
+          />
+        )}
+        <Image
+          className={`-mt-6 ${info === 'Surface' ? 'visible' : 'invisible'}`}
+          src={`/images/geology-${planetNameLowercase}.png`}
+          alt={`Planet ${planetNameLowercase} geology`}
+          width={80}
+          height={80}
+        />
+      </div>
+      <span className={`textStyle-h1 text-center`}>{planet}</span>
+    </div>
+  )
+}
+
 export default function Home() {
   const [planet, setPlanet] = useState<Planet>('Earth')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [info, setInfo] = useState<InfoMenuItem>('Overview')
+
+  function onMenuToggle() {
+    setMenuOpen(!menuOpen)
+  }
+
+  function onPlanetSelect(planet: Planet) {
+    setPlanet(planet)
+    setMenuOpen(false)
+  }
+
+  function onInfoSelect(info: InfoMenuItem) {
+    setInfo(info)
+  }
 
   return (
     <div
@@ -111,9 +128,17 @@ export default function Home() {
     >
       <div className={``}>
         <FixedHeight height={`h-4`} />
-        <Title className={`px-6`} />
+        <Title
+          className={`px-6`}
+          isMenuOpen={menuOpen}
+          onMenuToggle={onMenuToggle}
+        />
         <FixedHeight height={`h-4`} />
-        <InfoMenu planet={planet} />
+        <div className={`w-full h-px bg-white/20`} />
+        {menuOpen && <HamburgerMenu onClick={onPlanetSelect} />}
+        {!menuOpen && (
+          <Content planet={planet} info={info} onInfoSelect={onInfoSelect} />
+        )}
       </div>
     </div>
   )
