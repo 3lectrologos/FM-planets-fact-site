@@ -1,6 +1,11 @@
 import { twMerge } from 'tailwind-merge'
 import { ChevronIcon, HamburgerIcon } from '@/app/icons'
-import { Planet, planetBgColor, planetList } from '@/app/types'
+import {
+  Planet,
+  planetBgColor,
+  planetCircleColor,
+  planetList,
+} from '@/app/types'
 
 export function Title({
   className = '',
@@ -52,7 +57,7 @@ function MenuItem({ planet }: { planet: Planet }) {
   return (
     <div className={`flex flex-row py-5 items-center`}>
       <div
-        className={`w-5 h-5 rounded-full ${planetBgColor.get(planet)} mr-[25px]`}
+        className={`w-5 h-5 rounded-full ${planetCircleColor.get(planet)} mr-[25px]`}
       />
       <span className={`textStyle-menu`}>{planet}</span>
       <div className={`flex-grow`} />

@@ -52,6 +52,17 @@ export const planetBorderColor0 = new Map<Planet, string>([
   ['Neptune', 'border-neptune/0'],
 ])
 
+export const planetCircleColor = new Map<Planet, string>([
+  ['Mercury', 'bg-circle_mercury'],
+  ['Venus', 'bg-circle_venus'],
+  ['Earth', 'bg-circle_earth'],
+  ['Mars', 'bg-circle_mars'],
+  ['Jupiter', 'bg-circle_jupiter'],
+  ['Saturn', 'bg-circle_saturn'],
+  ['Uranus', 'bg-circle_uranus'],
+  ['Neptune', 'bg-circle_neptune'],
+])
+
 export type InfoMenuItem = 'overview' | 'structure' | 'surface'
 export const infoMenuItems = ['overview', 'structure', 'surface'] as const
 
