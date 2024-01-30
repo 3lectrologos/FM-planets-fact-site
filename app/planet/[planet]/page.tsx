@@ -2,6 +2,7 @@ import { promises as fs } from 'fs'
 import Structure from '@/app/planet/[planet]/Structure'
 import { isPlanet, Planet, PlanetData } from '@/app/types'
 import { notFound } from 'next/navigation'
+import path from 'node:path'
 
 export default async function Home({ params }: { params: { planet: string } }) {
   if (!isPlanet(params.planet)) {
@@ -9,7 +10,7 @@ export default async function Home({ params }: { params: { planet: string } }) {
   }
 
   const file = await fs.readFile(
-    process.cwd() + '/public/data/data.json',
+    path.join(process.cwd(), '/app/data/data.json'),
     'utf-8'
   )
   const data = JSON.parse(file) as PlanetData[]
