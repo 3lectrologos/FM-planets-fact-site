@@ -4,7 +4,7 @@ import { InfoMenuItem, Planet, PlanetData } from '@/app/types'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { HamburgerMenu, Title } from '@/app/title'
-import { Content } from '@/app/[planet]/Content'
+import { Content } from '@/app/planet/[planet]/Content'
 
 function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>

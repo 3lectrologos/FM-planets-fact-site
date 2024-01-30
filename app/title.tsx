@@ -48,7 +48,7 @@ export function HamburgerMenu({
           aria-label={planet}
         >
           <Link
-            href={`/${planet}`}
+            href={`/planet/${planet}`}
             onClick={() => (currentPlanet === planet ? onClick(planet) : {})}
           >
             <MenuItem planet={planet} active={currentPlanet === planet} />

@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import Structure from '@/app/[planet]/Structure'
+import Structure from '@/app/planet/[planet]/Structure'
 import { isPlanet, Planet, PlanetData } from '@/app/types'
 import { notFound } from 'next/navigation'
 
