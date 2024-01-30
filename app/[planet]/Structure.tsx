@@ -42,7 +42,12 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
         />
         <FixedHeight height={`h-4`} />
         <div className={`w-full h-px bg-white/20`} />
-        {menuOpen && <HamburgerMenu onClick={onPlanetSelect} />}
+        {menuOpen && (
+          <HamburgerMenu
+            currentPlanet={planetData.name as Planet}
+            onClick={onPlanetSelect}
+          />
+        )}
         {!menuOpen && (
           <Content
             planetData={planetData}

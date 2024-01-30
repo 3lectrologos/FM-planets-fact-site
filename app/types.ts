@@ -86,3 +86,14 @@ export type PlanetData = {
     geology: string
   }
 }
+
+export const planetSVGSize = new Map<Planet, number>([
+  ['Mercury', 290],
+  ['Venus', 400],
+  ['Earth', 450],
+  ['Mars', 336],
+  ['Jupiter', 582],
+  ['Saturn', 668],
+  ['Uranus', 458],
+  ['Neptune', 450],
+])

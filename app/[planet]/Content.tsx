@@ -5,6 +5,7 @@ import {
   planetBorderColor0,
   planetBorderColor100,
   PlanetData,
+  planetSVGSize,
 } from '@/app/types'
 import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
@@ -98,6 +99,45 @@ function Source({ source }: { source: string }) {
   )
 }
 
+function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
+  const planetNameLowercase = planet.toLowerCase()
+  const sizeRatio = 0.383
+  const size = sizeRatio * planetSVGSize.get(planet)!
+
+  return (
+    <div
+      className={`relative flex flex-col h-[300px] items-center justify-center`}
+    >
+      {info !== 'structure' && (
+        <Image
+          src={`/images/planet-${planetNameLowercase}.svg`}
+          alt={`Planet ${planetNameLowercase}`}
+          width={size}
+          height={size}
+        />
+      )}
+      {info === 'structure' && (
+        <Image
+          src={`/images/planet-${planetNameLowercase}-internal.svg`}
+          alt={`Planet ${planetNameLowercase}`}
+          width={size}
+          height={size}
+        />
+      )}
+      <Image
+        className={twMerge(
+          `absolute bottom-6 left-1/2 transform -translate-x-1/2`,
+          `${info === 'surface' ? 'visible' : 'invisible'}`
+        )}
+        src={`/images/geology-${planetNameLowercase}.png`}
+        alt={`Planet ${planetNameLowercase} geology`}
+        width={80}
+        height={80}
+      />
+    </div>
+  )
+}
+
 function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
@@ -111,8 +151,6 @@ export function Content({
   info: InfoMenuItem
   onInfoSelect: (info: InfoMenuItem) => void
 }) {
-  const planetNameLowercase = planetData.name.toLowerCase()
-
   return (
     <div className={`flex flex-col`}>
       <InfoMenu
@@ -120,34 +158,12 @@ export function Content({
         selected={info}
         onSelect={onInfoSelect}
       />
-      <div className={`flex flex-col w-full items-center mt-24 mb-6`}>
-        {info !== 'structure' && (
-          <Image
-            src={`/images/planet-${planetNameLowercase}.svg`}
-            alt={`Planet ${planetNameLowercase}`}
-            width={111}
-            height={111}
-          />
-        )}
-        {info === 'structure' && (
-          <Image
-            src={`/images/planet-${planetNameLowercase}-internal.svg`}
-            alt={`Planet ${planetNameLowercase}`}
-            width={111}
-            height={111}
-          />
-        )}
-        <Image
-          className={`-mt-6 ${info === 'surface' ? 'visible' : 'invisible'}`}
-          src={`/images/geology-${planetNameLowercase}.png`}
-          alt={`Planet ${planetNameLowercase} geology`}
-          width={80}
-          height={80}
-        />
-      </div>
+      <PlanetImage planet={planetData.name} info={info} />
       <span className={`textStyle-h1 text-center`}>{planetData.name}</span>
       <FixedHeight height={`h-4`} />
-      <div className={`textStyle-body px-6 text-center text-white/85`}>
+      <div
+        className={`textStyle-body px-6 text-center text-white/85 text-pretty`}
+      >
         {planetData[info]['content']}
       </div>
       <FixedHeight height={`h-8`} />

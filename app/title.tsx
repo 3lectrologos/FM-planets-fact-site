@@ -31,7 +31,13 @@ export function Title({
   )
 }
 
-export function HamburgerMenu({ onClick }: { onClick: (_p: Planet) => void }) {
+export function HamburgerMenu({
+  currentPlanet,
+  onClick,
+}: {
+  currentPlanet: Planet
+  onClick: (_p: Planet) => void
+}) {
   return (
     <ul className={`flex flex-col px-6 pt-6 pb-8 bg-background/50`} role="menu">
       {planetList.map((planet, index) => (
@@ -41,8 +47,11 @@ export function HamburgerMenu({ onClick }: { onClick: (_p: Planet) => void }) {
           role="menuitem"
           aria-label={planet}
         >
-          <Link href={`/${planet}`}>
-            <MenuItem planet={planet} />
+          <Link
+            href={`/${planet}`}
+            onClick={() => (currentPlanet === planet ? onClick(planet) : {})}
+          >
+            <MenuItem planet={planet} active={currentPlanet === planet} />
           </Link>
         </li>
       ))}
@@ -50,9 +59,20 @@ export function HamburgerMenu({ onClick }: { onClick: (_p: Planet) => void }) {
   )
 }
 
-function MenuItem({ planet }: { planet: Planet }) {
+function MenuItem({
+  planet,
+  active = false,
+}: {
+  planet: Planet
+  active?: boolean
+}) {
   return (
-    <div className={`flex flex-row py-5 items-center`}>
+    <div
+      className={twMerge(
+        `flex flex-row py-5 items-center`,
+        `${active ? 'opacity-100' : 'opacity-60'}`
+      )}
+    >
       <div
         className={`w-5 h-5 rounded-full ${planetCircleColor.get(planet)} mr-[25px]`}
       />
