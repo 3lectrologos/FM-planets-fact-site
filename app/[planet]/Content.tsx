@@ -10,7 +10,7 @@ import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export function InfoMenu({
+function InfoMenu({
   planet,
   selected,
   onSelect,
@@ -50,13 +50,7 @@ export function InfoMenu({
   )
 }
 
-export function PlanetNumber({
-  label,
-  value,
-}: {
-  label: string
-  value: string
-}) {
+function PlanetNumber({ label, value }: { label: string; value: string }) {
   return (
     <div className={`w-full px-6 py-4 border border-1 border-white/20`}>
       <div className={`flex flex-row items-center justify-between`}>
@@ -67,7 +61,7 @@ export function PlanetNumber({
   )
 }
 
-export function PlanetNumbers({ planetData }: { planetData: PlanetData }) {
+function PlanetNumbers({ planetData }: { planetData: PlanetData }) {
   return (
     <div className={`flex flex-col gap-2 px-6`}>
       <PlanetNumber label={`rotation time`} value={planetData.rotation} />
@@ -78,7 +72,7 @@ export function PlanetNumbers({ planetData }: { planetData: PlanetData }) {
   )
 }
 
-export function Source({ source }: { source: string }) {
+function Source({ source }: { source: string }) {
   return (
     <div
       className={twMerge(
@@ -109,21 +103,23 @@ function FixedHeight({ height }: { height: string }) {
 }
 
 export function Content({
-  planet,
   planetData,
   info,
   onInfoSelect,
 }: {
-  planet: Planet
   planetData: PlanetData
   info: InfoMenuItem
   onInfoSelect: (info: InfoMenuItem) => void
 }) {
-  const planetNameLowercase = planet.toLowerCase()
+  const planetNameLowercase = planetData.name.toLowerCase()
 
   return (
     <div className={`flex flex-col`}>
-      <InfoMenu planet={planet} selected={info} onSelect={onInfoSelect} />
+      <InfoMenu
+        planet={planetData.name}
+        selected={info}
+        onSelect={onInfoSelect}
+      />
       <div className={`flex flex-col w-full items-center mt-24 mb-6`}>
         {info !== 'structure' && (
           <Image
@@ -149,7 +145,7 @@ export function Content({
           height={80}
         />
       </div>
-      <span className={`textStyle-h1 text-center`}>{planet}</span>
+      <span className={`textStyle-h1 text-center`}>{planetData.name}</span>
       <FixedHeight height={`h-4`} />
       <div className={`textStyle-body px-6 text-center text-white/85`}>
         {planetData[info]['content']}

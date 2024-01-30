@@ -4,14 +4,13 @@ import { InfoMenuItem, Planet, PlanetData } from '@/app/types'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { HamburgerMenu, Title } from '@/app/title'
-import { Content } from '@/app/content'
+import { Content } from '@/app/[planet]/Content'
 
 function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
 
-export default function Structure({ data }: { data: PlanetData[] }) {
-  const [planet, setPlanet] = useState<Planet>('Earth')
+export default function Structure({ planetData }: { planetData: PlanetData }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [info, setInfo] = useState<InfoMenuItem>('overview')
 
@@ -20,7 +19,6 @@ export default function Structure({ data }: { data: PlanetData[] }) {
   }
 
   function onPlanetSelect(planet: Planet) {
-    setPlanet(planet)
     setMenuOpen(false)
   }
 
@@ -47,8 +45,7 @@ export default function Structure({ data }: { data: PlanetData[] }) {
         {menuOpen && <HamburgerMenu onClick={onPlanetSelect} />}
         {!menuOpen && (
           <Content
-            planet={planet}
-            planetData={data.find((d) => d.name === planet)!}
+            planetData={planetData}
             info={info}
             onInfoSelect={onInfoSelect}
           />

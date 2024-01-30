@@ -1,13 +1,3 @@
-export type Planet =
-  | 'Mercury'
-  | 'Venus'
-  | 'Earth'
-  | 'Mars'
-  | 'Jupiter'
-  | 'Saturn'
-  | 'Uranus'
-  | 'Neptune'
-
 export const planetList = [
   'Mercury',
   'Venus',
@@ -18,6 +8,12 @@ export const planetList = [
   'Uranus',
   'Neptune',
 ] as const
+
+export type Planet = (typeof planetList)[number]
+
+export function isPlanet(planet: string): planet is Planet {
+  return planetList.includes(planet as Planet)
+}
 
 export const planetBgColor = new Map<Planet, string>([
   ['Mercury', 'bg-mercury'],
