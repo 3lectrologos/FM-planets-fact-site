@@ -2,10 +2,20 @@ import { twMerge } from 'tailwind-merge'
 import { InfoMenuItem } from '@/app/types'
 import Image from 'next/image'
 
-export function HamburgerIcon({ active }: { active: boolean }) {
+export function HamburgerIcon({
+  className = '',
+  active,
+}: {
+  className?: string
+  active: boolean
+}) {
   return (
     <div
-      className={`flex flex-col w-[24px] h-[24px] justify-center transition-opacity ${active ? 'opacity-25' : ''}`}
+      className={twMerge(
+        `flex flex-col w-[24px] h-[24px] justify-center transition-opacity`,
+        `${active ? 'opacity-25' : ''}`,
+        `${className}`
+      )}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17">
         <g fill="#FFF" fillRule="evenodd">

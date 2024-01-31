@@ -3,6 +3,40 @@ import { ChevronIcon, HamburgerIcon } from '@/app/icons'
 import { Planet, planetCircleColor, planetList } from '@/app/types'
 import Link from 'next/link'
 
+export function FullMenu({
+  currentPlanet,
+  onClick,
+  className = '',
+}: {
+  currentPlanet: Planet
+  onClick: (_p: Planet) => void
+  className?: string
+}) {
+  return (
+    <div className={`w-full flex flex-col items-center`}>
+      <ul
+        className={twMerge(`flex flex-row gap-x-[33px]`, `${className}`)}
+        role="menu"
+      >
+        {planetList.map((planet, index) => (
+          <li key={index} className={``} role="menuitem" aria-label={planet}>
+            <Link
+              href={`/planet/${planet}`}
+              onClick={() => (currentPlanet === planet ? onClick(planet) : {})}
+            >
+              <span
+                className={`textStyle-menu ${currentPlanet === planet ? 'opacity-100' : 'opacity-60'}`}
+              >
+                {planet}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function Title({
   className = '',
   isMenuOpen,
@@ -15,12 +49,13 @@ export function Title({
   return (
     <div
       className={twMerge(
-        `flex flex-row items-center justify-between`,
+        `flex flex-row items-center justify-between tablet:justify-center`,
         `${className}`
       )}
     >
       <h1 className={`textStyle-title`}>The planets</h1>
       <button
+        className={`tablet:hidden`}
         onClick={onMenuToggle}
         aria-haspopup="menu"
         aria-expanded={isMenuOpen}

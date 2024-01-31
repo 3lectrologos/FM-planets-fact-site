@@ -26,6 +26,17 @@ export const planetBgColor = new Map<Planet, string>([
   ['Neptune', 'bg-neptune'],
 ])
 
+export const planetTabletBgColor = new Map<Planet, string>([
+  ['Mercury', 'tablet:bg-mercury'],
+  ['Venus', 'tablet:bg-venus'],
+  ['Earth', 'tablet:bg-earth'],
+  ['Mars', 'tablet:bg-mars'],
+  ['Jupiter', 'tablet:bg-jupiter'],
+  ['Saturn', 'tablet:bg-saturn'],
+  ['Uranus', 'tablet:bg-uranus'],
+  ['Neptune', 'tablet:bg-neptune'],
+])
+
 export const planetBorderColor100 = new Map<Planet, string>([
   ['Mercury', 'border-mercury/100'],
   ['Venus', 'border-venus/100'],
@@ -97,3 +108,29 @@ export const planetSVGSize = new Map<Planet, number>([
   ['Uranus', 458],
   ['Neptune', 450],
 ])
+
+const sizeMultiplierMobile = 0.383
+export const planetSVGSizeMobile = new Map<Planet, string>([
+  ['Mercury', 'w-[111.07px] h-[111.07px]'],
+  ['Venus', 'w-[153.2px] h-[153.2px]'],
+  ['Earth', 'w-[172.35px] h-[172.35px]'],
+  ['Mars', 'w-[128.64px] h-[128.64px]'],
+  ['Jupiter', 'w-[222.51px] h-[222.51px]'],
+  ['Saturn', 'w-[254.94px] h-[254.94px]'],
+  ['Uranus', 'w-[174.99px] h-[174.99px]'],
+  ['Neptune', 'w-[172.35px] h-[172.35px]'],
+])
+export const surfaceSVGSizeMobile = 'w-[80px] h-[80px]'
+
+const sizeMultiplierTablet = 0.6325
+export const planetSVGSizeTablet = new Map<Planet, string>([
+  ['Mercury', 'tablet:w-[183.425px] tablet:h-[183.425px]'],
+  ['Venus', 'tablet:w-[253px] tablet:h-[253px]'],
+  ['Earth', 'tablet:w-[286.75px] tablet:h-[286.75px]'],
+  ['Mars', 'tablet:w-[214px] tablet:h-[214px]'],
+  ['Jupiter', 'tablet:w-[370.5px] tablet:h-[370.5px]'],
+  ['Saturn', 'tablet:w-[423.5px] tablet:h-[423.5px]'],
+  ['Uranus', 'tablet:w-[290.5px] tablet:h-[290.5px]'],
+  ['Neptune', 'tablet:w-[286.75px] tablet:h-[286.75px]'],
+])
+export const surfaceSVGSizeTablet = 'tablet:w-[132px] tablet:h-[132px]'
