@@ -2,7 +2,6 @@
 
 import { PlanetData } from '@/app/types'
 import { usePlanetMenu } from '@/app/planet/[planet]/planetMenuContext'
-import PlanetContextProvider from '@/app/planet/[planet]/PlanetContextProvider'
 import { HamburgerMenu } from '@/app/planet/[planet]/HamburgerMenu'
 import Content from '@/app/planet/[planet]/Content'
 

@@ -2,10 +2,7 @@
 
 import { ChevronIcon } from '@/app/icons'
 import { Planet, planetList } from '@/app/types'
-import {
-  usePlanetMenu,
-  usePlanetMenuDispatch,
-} from '@/app/planet/[planet]/planetMenuContext'
+import { usePlanetMenuDispatch } from '@/app/planet/[planet]/planetMenuContext'
 import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
 import { planetCircleColor } from '@/app/constants'
@@ -17,7 +14,6 @@ export function HamburgerMenu({
   planet: Planet
   className?: string
 }) {
-  const planetMenuState = usePlanetMenu()
   const planetMenuDispatch = usePlanetMenuDispatch()
 
   return (

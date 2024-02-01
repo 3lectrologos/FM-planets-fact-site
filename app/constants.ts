@@ -2,7 +2,7 @@ import { Planet } from '@/app/types'
 
 /* Colors */
 
-export const planetBgColor = new Map<Planet, string>([
+new Map<Planet, string>([
   ['Mercury', 'bg-mercury'],
   ['Venus', 'bg-venus'],
   ['Earth', 'bg-earth'],
@@ -92,7 +92,7 @@ export const planetCircleColor = new Map<Planet, string>([
 
 /* Sizes */
 
-export const planetSVGSize = new Map<Planet, number>([
+new Map<Planet, number>([
   ['Mercury', 290],
   ['Venus', 400],
   ['Earth', 450],
@@ -103,6 +103,7 @@ export const planetSVGSize = new Map<Planet, number>([
   ['Neptune', 450],
 ])
 
+// noinspection JSUnusedLocalSymbols
 const sizeMultiplierMobile = 0.383
 export const planetSVGSizeMobile = new Map<Planet, string>([
   ['Mercury', 'w-[111.07px] h-[111.07px]'],
@@ -116,6 +117,7 @@ export const planetSVGSizeMobile = new Map<Planet, string>([
 ])
 export const surfaceSVGSizeMobile = 'w-[80px] h-[80px]'
 
+// noinspection JSUnusedLocalSymbols
 const sizeMultiplierTablet = 0.6325
 export const planetSVGSizeTablet = new Map<Planet, string>([
   ['Mercury', 'tablet:w-[183.425px] tablet:h-[183.425px]'],
@@ -129,6 +131,7 @@ export const planetSVGSizeTablet = new Map<Planet, string>([
 ])
 export const surfaceSVGSizeTablet = 'tablet:w-[132px] tablet:h-[132px]'
 
+// noinspection JSUnusedLocalSymbols
 const sizeMultiplierDesktop = 1
 export const planetSVGSizeDesktop = new Map<Planet, string>([
   ['Mercury', 'desktop:w-[290px] desktop:h-[290px]'],

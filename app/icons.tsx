@@ -1,6 +1,4 @@
 import { twMerge } from 'tailwind-merge'
-import { InfoMenuItem } from '@/app/types'
-import Image from 'next/image'
 
 export function HamburgerIcon({
   className = '',

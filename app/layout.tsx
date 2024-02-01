@@ -6,6 +6,7 @@ import PlanetContextProvider from '@/app/planet/[planet]/PlanetContextProvider'
 import { twMerge } from 'tailwind-merge'
 import Title from '@/app/planet/[planet]/Title'
 import FixedHeight from '@/app/FixedHeight'
+import React from 'react'
 
 const antonio = Antonio({
   subsets: ['latin'],

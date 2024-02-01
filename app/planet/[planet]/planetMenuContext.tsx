@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useContext, useReducer } from 'react'
+import React, { createContext, Dispatch, useContext, useReducer } from 'react'
 import { InfoMenuItem } from '@/app/types'
 
 type PlanetMenuState = {
