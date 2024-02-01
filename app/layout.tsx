@@ -43,7 +43,9 @@ export default async function RootLayout({
                   `desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`
                 )}
               >
-                <Title className={`px-6 desktop:px-0`} />
+                <header>
+                  <Title className={`px-6 desktop:px-0`} />
+                </header>
                 <FixedHeight height={`h-4 tablet:h-10 desktop:hidden`} />
                 <nav>
                   <FullMenu className={`hidden tablet:flex`} />
