@@ -1,3 +1,5 @@
+'use client'
+
 import {
   InfoMenuItem,
   infoMenuItemList,
@@ -11,7 +13,6 @@ import Link from 'next/link'
 import {
   planetBorderColor0,
   planetBorderColor100,
-  planetSVGSize,
   planetSVGSizeDesktop,
   planetSVGSizeMobile,
   planetSVGSizeTablet,
@@ -22,7 +23,10 @@ import {
   surfaceSVGSizeTablet,
 } from '@/app/constants'
 import { SourceIcon } from '@/app/icons'
-import { usePlanetMenu, usePlanetMenuDispatch } from '@/app/PlanetMenuContext'
+import {
+  usePlanetMenu,
+  usePlanetMenuDispatch,
+} from '@/app/planet/[planet]/planetMenuContext'
 
 function InfoMenu({
   planet,
@@ -148,6 +152,7 @@ function Source({ source }: { source: string }) {
       <Link
         className={`font-medium underline opacity-50 mr-1 desktop:mr-2`}
         href={source}
+        target="_blank"
       >
         Wikipedia
       </Link>
@@ -249,7 +254,7 @@ function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
 
-export function Content({ planetData }: { planetData: PlanetData }) {
+export default function Content({ planetData }: { planetData: PlanetData }) {
   const planet = planetData.name
 
   return (

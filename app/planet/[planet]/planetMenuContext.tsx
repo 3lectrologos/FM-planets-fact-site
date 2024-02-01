@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useContext, useReducer } from 'react'
-import { InfoMenuItem, Planet } from '@/app/types'
+import { InfoMenuItem } from '@/app/types'
 
 type PlanetMenuState = {
   info: InfoMenuItem
@@ -16,8 +16,8 @@ const initialState: PlanetMenuState = {
   menuOpen: false,
 }
 
-export const PlanetMenuContext = createContext({} as PlanetMenuState)
-export const PlanetMenuDispatchContext = createContext(
+const PlanetMenuContext = createContext({} as PlanetMenuState)
+const PlanetMenuDispatchContext = createContext(
   {} as Dispatch<PlanetMenuAction>
 )
 

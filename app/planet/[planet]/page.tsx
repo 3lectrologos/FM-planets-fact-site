@@ -3,6 +3,7 @@ import Structure from '@/app/planet/[planet]/Structure'
 import { isPlanet, Planet, PlanetData } from '@/app/types'
 import { notFound } from 'next/navigation'
 import path from 'node:path'
+import PlanetContextProvider from '@/app/planet/[planet]/PlanetContextProvider'
 
 export default async function Home({ params }: { params: { planet: string } }) {
   if (!isPlanet(params.planet)) {
