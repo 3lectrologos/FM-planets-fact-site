@@ -27,14 +27,16 @@ export default function Title({ className = '' }: { className?: string }) {
       )}
     >
       <h1 className={`textStyle-title`}>The planets</h1>
-      <button
+      <div
         className={`tablet:hidden`}
         onClick={onClick}
+        role="button"
+        aria-label="Open menu"
         aria-haspopup="menu"
         aria-expanded={planetMenuState.menuOpen}
       >
         <HamburgerIcon active={planetMenuState.menuOpen} />
-      </button>
+      </div>
     </div>
   )
 }

@@ -54,5 +54,5 @@
   @apply text-[13px] tablet:text-[13px] desktop:text-[17px];
   @apply leading-[22px] tablet:leading-[22px] desktop:leading-[25px];
   @apply tracking-[0.7px] tablet:tracking-[0.7px] desktop:tracking-[0.7px];
-  @apply font-extralight;
+  @apply font-light;
 }
