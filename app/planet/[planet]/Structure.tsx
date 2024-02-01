@@ -34,7 +34,7 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
       )}
     >
       <div className={`flex flex-col justify-center`}>
-        <FixedHeight height={`h-4 tablet:h-8 desktop:h-[22px]`} />
+        <FixedHeight height={`h-4 tablet:h-8 desktop:hidden`} />
         <div
           className={`flex flex-col desktop:flex-row desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`}
         >
@@ -50,7 +50,7 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
             onClick={onPlanetSelect}
           />
         </div>
-        <FixedHeight height={`h-0 tablet:h-[27px]`} />
+        <FixedHeight height={`h-0 tablet:h-[5px]`} />
         <div className={`w-full h-px bg-white/20`} />
         {menuOpen && (
           <HamburgerMenu

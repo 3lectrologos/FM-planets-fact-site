@@ -63,15 +63,18 @@ function InfoMenu({
               item === selected &&
                 `tablet:border-0 ${planetTabletBgColor.get(planet)}`,
               `desktop:w-full`,
-              `desktop:h-12 desktop:px-[28px]`
+              `desktop:h-12 desktop:px-[28px]`,
+              item !== selected && `hover:bg-gray/20`
             )}
             key={index}
             role="menuitem"
             tabIndex={0}
             onClick={() => onClick(item)}
           >
-            <div>
-              <span className={`hidden tablet:inline mr-[14px] text-white/50`}>
+            <div className={`flex flex-row items-center`}>
+              <span
+                className={`hidden tablet:inline mr-[14px] text-white/50 desktop:mr-[25px]`}
+              >
                 {String(index + 1).padStart(2, '0')}
               </span>
               <span className={`tablet:hidden`}>{item}</span>
@@ -272,26 +275,28 @@ export function Content({
         selected={info}
         onSelect={onInfoSelect}
       />
-      <div className={`flex flex-col desktop:flex-row desktop:gap-x-[112px]`}>
-        <PlanetImage planet={planetData.name} info={info} />
-        <div
-          className={twMerge(
-            `flex flex-row items-center`,
-            `tablet:px-10 tablet:gap-x-[69px]`,
-            `desktop:flex-col desktop:w-[350px] desktop:px-0 desktop:pb-[87px] desktop:pt-32 justify-between`
-          )}
-        >
-          <PlanetText planetData={planetData} info={info} />
-          <InfoMenu
-            className={`hidden tablet:flex`}
-            planet={planetData.name}
-            selected={info}
-            onSelect={onInfoSelect}
-          />
+      <div className={`desktop:flex desktop:flex-col desktop:items-end`}>
+        <div className={`flex flex-col desktop:flex-row desktop:gap-x-[112px]`}>
+          <PlanetImage planet={planetData.name} info={info} />
+          <div
+            className={twMerge(
+              `flex flex-row items-center`,
+              `tablet:px-10 tablet:gap-x-[69px]`,
+              `desktop:flex-col desktop:w-[350px] desktop:px-0 desktop:pb-[87px] desktop:pt-32 justify-between`
+            )}
+          >
+            <PlanetText planetData={planetData} info={info} />
+            <InfoMenu
+              className={`hidden tablet:flex`}
+              planet={planetData.name}
+              selected={info}
+              onSelect={onInfoSelect}
+            />
+          </div>
         </div>
+        <FixedHeight height={`h-8 tablet:h-[28px] desktop:hidden`} />
+        <PlanetNumbers planetData={planetData} />
       </div>
-      <FixedHeight height={`h-8 tablet:h-[28px] desktop:hidden`} />
-      <PlanetNumbers planetData={planetData} />
       <FixedHeight height={`h-12`} />
     </div>
   )

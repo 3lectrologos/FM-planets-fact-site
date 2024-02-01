@@ -1,6 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 import { ChevronIcon, HamburgerIcon } from '@/app/icons'
-import { Planet, planetCircleColor, planetList } from '@/app/types'
+import {
+  Planet,
+  planetCircleColor,
+  planetDesktopBorderColor0,
+  planetDesktopHoverBorderColor100,
+  planetList,
+} from '@/app/types'
 import Link from 'next/link'
 
 export function FullMenu({
@@ -19,8 +25,19 @@ export function FullMenu({
         role="menu"
       >
         {planetList.map((planet, index) => (
-          <li key={index} className={``} role="menuitem" aria-label={planet}>
+          <li
+            key={index}
+            className={twMerge(`desktop:flex desktop:flex-col`)}
+            role="menuitem"
+            aria-label={planet}
+          >
             <Link
+              className={twMerge(
+                `desktop:flex desktop:flex-col desktop:justify-center desktop:h-[69px] desktop:hover:pt-[8px]`,
+                `cursor-pointer desktop:transition-[border-color,opacity,padding] desktop:ease-linear desktop:hover:transition-[border-color,opacity,padding]`,
+                `${planetDesktopBorderColor0.get(planet)}`,
+                `desktop:hover:border-t-[4px] ${planetDesktopHoverBorderColor100.get(planet)}`
+              )}
               href={`/planet/${planet}`}
               onClick={() => (currentPlanet === planet ? onClick(planet) : {})}
             >

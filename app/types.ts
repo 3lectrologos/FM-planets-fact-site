@@ -70,6 +70,28 @@ export const planetBorderColor0 = new Map<Planet, string>([
   ['Neptune', 'border-neptune/0'],
 ])
 
+export const planetDesktopHoverBorderColor100 = new Map<Planet, string>([
+  ['Mercury', 'desktop:hover:border-mercury/100'],
+  ['Venus', 'desktop:hover:border-venus/100'],
+  ['Earth', 'desktop:hover:border-earth/100'],
+  ['Mars', 'desktop:hover:border-mars/100'],
+  ['Jupiter', 'desktop:hover:border-jupiter/100'],
+  ['Saturn', 'desktop:hover:border-saturn/100'],
+  ['Uranus', 'desktop:hover:border-uranus/100'],
+  ['Neptune', 'desktop:hover:border-neptune/100'],
+])
+
+export const planetDesktopBorderColor0 = new Map<Planet, string>([
+  ['Mercury', 'desktop:border-mercury/0'],
+  ['Venus', 'desktop:border-venus/0'],
+  ['Earth', 'desktop:border-earth/0'],
+  ['Mars', 'desktop:border-mars/0'],
+  ['Jupiter', 'desktop:border-jupiter/0'],
+  ['Saturn', 'desktop:border-saturn/0'],
+  ['Uranus', 'desktop:border-uranus/0'],
+  ['Neptune', 'desktop:border-neptune/0'],
+])
+
 export const planetCircleColor = new Map<Planet, string>([
   ['Mercury', 'bg-circle_mercury'],
   ['Venus', 'bg-circle_venus'],
