@@ -1,12 +1,16 @@
 import {
   InfoMenuItem,
-  infoMenuItems,
-  infoMenuItemsExtended,
+  infoMenuItemList,
+  infoMenuItemExtendedList,
   Planet,
-  planetBgColor,
+  PlanetData,
+} from '@/app/types'
+import { twMerge } from 'tailwind-merge'
+import Image from 'next/image'
+import Link from 'next/link'
+import {
   planetBorderColor0,
   planetBorderColor100,
-  PlanetData,
   planetSVGSize,
   planetSVGSizeDesktop,
   planetSVGSizeMobile,
@@ -16,10 +20,8 @@ import {
   surfaceSVGSizeDesktop,
   surfaceSVGSizeMobile,
   surfaceSVGSizeTablet,
-} from '@/app/types'
-import { twMerge } from 'tailwind-merge'
-import Image from 'next/image'
-import Link from 'next/link'
+} from '@/app/constants'
+import { SourceIcon } from '@/app/icons'
 
 function InfoMenu({
   planet,
@@ -45,7 +47,7 @@ function InfoMenu({
         )}
         role="menubar"
       >
-        {infoMenuItems.map((item, index) => (
+        {infoMenuItemList.map((item, index) => (
           <li
             className={twMerge(
               `textStyle-h3 w-[80px] pt-5 pb-4 text-center`,
@@ -79,7 +81,7 @@ function InfoMenu({
               </span>
               <div className={`w-full tablet:hidden`}>{item}</div>
               <span className={`hidden tablet:inline`}>
-                {infoMenuItemsExtended[index]}
+                {infoMenuItemExtendedList[index]}
               </span>
             </div>
           </li>
@@ -148,23 +150,13 @@ function Source({ source }: { source: string }) {
       >
         Wikipedia
       </Link>
-      <div className={`w-3 h-3`}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={'0 0 12 12'}>
-          <path
-            fill="#FFF"
-            d="M11.34.66C10.9.22 10.37 0 9.75 0h-7.5C1.63 0 1.1.22.66.66.22 1.1 0 1.63 0 2.25v7.5c0 .62.22 1.15.66 1.59.44.44.97.66 1.59.66h7.5c.62 0 1.15-.22 1.59-.66.44-.44.66-.97.66-1.59v-7.5c0-.62-.22-1.15-.66-1.59zM10 6.25a.467.467 0 01-.305.46.544.544 0 01-.195.04.465.465 0 01-.352-.149L8.023 5.476 3.852 9.648a.481.481 0 01-.352.149.48.48 0 01-.352-.149l-.796-.797a.48.48 0 01-.149-.351.48.48 0 01.149-.352l4.172-4.172-1.125-1.125c-.162-.15-.198-.333-.11-.546A.467.467 0 015.75 2H9.5c.135 0 .253.05.352.148A.48.48 0 0110 2.5v3.75z"
-            opacity=".5"
-          />
-        </svg>
-      </div>
+      <SourceIcon className={`mb-0.5`} />
     </div>
   )
 }
 
 function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
   const planetNameLowercase = planet.toLowerCase()
-  const sizeRatio = 0.383
-  const size = sizeRatio * planetSVGSize.get(planet)!
 
   return (
     <div

@@ -18,7 +18,7 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
     setMenuOpen(!menuOpen)
   }
 
-  function onPlanetSelect(planet: Planet) {
+  function onPlanetSelect(_planet: Planet) {
     setMenuOpen(false)
   }
 
@@ -36,7 +36,10 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
       <div className={`flex flex-col justify-center`}>
         <FixedHeight height={`h-4 tablet:h-8 desktop:hidden`} />
         <div
-          className={`flex flex-col desktop:flex-row desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`}
+          className={twMerge(
+            `flex flex-col desktop:flex-row`,
+            `desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`
+          )}
         >
           <Title
             className={`px-6 desktop:px-0`}
