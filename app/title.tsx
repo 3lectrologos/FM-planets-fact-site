@@ -33,7 +33,7 @@ export function FullMenu({
           >
             <Link
               className={twMerge(
-                `desktop:flex desktop:flex-col desktop:justify-center desktop:h-[69px] desktop:hover:pt-[8px]`,
+                `desktop:flex desktop:flex-col desktop:justify-center desktop:h-[85px] desktop:hover:pt-[8px]`,
                 `cursor-pointer desktop:transition-[border-color,opacity,padding] desktop:ease-linear desktop:hover:transition-[border-color,opacity,padding]`,
                 `${planetDesktopBorderColor0.get(planet)}`,
                 `desktop:hover:border-t-[4px] ${planetDesktopHoverBorderColor100.get(planet)}`

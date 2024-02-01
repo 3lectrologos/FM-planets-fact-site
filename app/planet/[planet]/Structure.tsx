@@ -50,7 +50,7 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
             onClick={onPlanetSelect}
           />
         </div>
-        <FixedHeight height={`h-0 tablet:h-[27px]`} />
+        <FixedHeight height={`h-0 tablet:h-[27px] desktop:hidden`} />
         <div className={`w-full h-px bg-white/20`} />
         {menuOpen && (
           <HamburgerMenu
