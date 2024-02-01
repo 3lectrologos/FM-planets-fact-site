@@ -1,30 +1,18 @@
 'use client'
 
-import { InfoMenuItem, Planet, PlanetData } from '@/app/types'
-import { useState } from 'react'
+import { PlanetData } from '@/app/types'
 import { twMerge } from 'tailwind-merge'
 import { FullMenu, HamburgerMenu, Title } from '@/app/title'
 import { Content } from '@/app/planet/[planet]/Content'
+import { PlanetMenuProvider, usePlanetMenu } from '@/app/PlanetMenuContext'
 
 function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
 
-export default function Structure({ planetData }: { planetData: PlanetData }) {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [info, setInfo] = useState<InfoMenuItem>('overview')
-
-  function onMenuToggle() {
-    setMenuOpen(!menuOpen)
-  }
-
-  function onPlanetSelect(_planet: Planet) {
-    setMenuOpen(false)
-  }
-
-  function onInfoSelect(info: InfoMenuItem) {
-    setInfo(info)
-  }
+function WithContext({ planetData }: { planetData: PlanetData }) {
+  const planetMenuState = usePlanetMenu()
+  const planet = planetData.name
 
   return (
     <div
@@ -41,34 +29,23 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
             `desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`
           )}
         >
-          <Title
-            className={`px-6 desktop:px-0`}
-            isMenuOpen={menuOpen}
-            onMenuToggle={onMenuToggle}
-          />
+          <Title className={`px-6 desktop:px-0`} />
           <FixedHeight height={`h-4 tablet:h-10 desktop:hidden`} />
-          <FullMenu
-            className={`hidden tablet:flex`}
-            currentPlanet={planetData.name as Planet}
-            onClick={onPlanetSelect}
-          />
+          <FullMenu planet={planet} className={`hidden tablet:flex`} />
         </div>
         <FixedHeight height={`h-0 tablet:h-[27px] desktop:hidden`} />
         <div className={`w-full h-px bg-white/20`} />
-        {menuOpen && (
-          <HamburgerMenu
-            currentPlanet={planetData.name as Planet}
-            onClick={onPlanetSelect}
-          />
-        )}
-        {!menuOpen && (
-          <Content
-            planetData={planetData}
-            info={info}
-            onInfoSelect={onInfoSelect}
-          />
-        )}
+        {planetMenuState.menuOpen && <HamburgerMenu planet={planet} />}
+        {!planetMenuState.menuOpen && <Content planetData={planetData} />}
       </div>
     </div>
+  )
+}
+
+export default function Structure({ planetData }: { planetData: PlanetData }) {
+  return (
+    <PlanetMenuProvider>
+      <WithContext planetData={planetData} />
+    </PlanetMenuProvider>
   )
 }

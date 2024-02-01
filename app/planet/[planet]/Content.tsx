@@ -22,20 +22,21 @@ import {
   surfaceSVGSizeTablet,
 } from '@/app/constants'
 import { SourceIcon } from '@/app/icons'
+import { usePlanetMenu, usePlanetMenuDispatch } from '@/app/PlanetMenuContext'
 
 function InfoMenu({
   planet,
-  selected,
-  onSelect,
   className = '',
 }: {
   planet: Planet
-  selected: InfoMenuItem
-  onSelect: (info: InfoMenuItem) => void
   className?: string
 }) {
+  const planetMenuState = usePlanetMenu()
+  const planetMenuDispatch = usePlanetMenuDispatch()
+  const selectedInfo = planetMenuState.info
+
   function onClick(info: InfoMenuItem) {
-    onSelect(info)
+    planetMenuDispatch({ type: 'SET_INFO', info })
   }
 
   return (
@@ -54,19 +55,19 @@ function InfoMenu({
               `cursor-pointer transition-colors`,
               `tablet:w-[281px] tablet:h-10 tablet:px-5`,
               `tablet:flex tablet:flex-col tablet:justify-center tablet:py-0`,
-              item === selected ? `text-white` : `text-white/50`,
-              item === selected
+              item === selectedInfo ? `text-white` : `text-white/50`,
+              item === selectedInfo
                 ? `border-b-[4px] ${planetBorderColor100.get(planet)}`
                 : `border-b-[4px] ${planetBorderColor0.get(planet)}`,
               `tablet:text-white tablet:text-left`,
-              item !== selected
+              item !== selectedInfo
                 ? `tablet:border-[1px] tablet:border-white/20`
                 : `tablet:border-[1px] ${planetTabletBorderColor100.get(planet)}`,
-              item === selected &&
+              item === selectedInfo &&
                 `tablet:border-0 ${planetTabletBgColor.get(planet)}`,
               `desktop:w-full`,
               `desktop:h-12 desktop:px-[28px]`,
-              item !== selected && `tablet:hover:bg-gray/20`
+              item !== selectedInfo && `tablet:hover:bg-gray/20`
             )}
             key={index}
             role="menuitem"
@@ -155,7 +156,9 @@ function Source({ source }: { source: string }) {
   )
 }
 
-function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
+function PlanetImage({ planet }: { planet: Planet }) {
+  const planetMenuState = usePlanetMenu()
+  const info = planetMenuState.info
   const planetNameLowercase = planet.toLowerCase()
 
   return (
@@ -219,13 +222,9 @@ function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
   )
 }
 
-function PlanetText({
-  planetData,
-  info,
-}: {
-  planetData: PlanetData
-  info: InfoMenuItem
-}) {
+function PlanetText({ planetData }: { planetData: PlanetData }) {
+  const info = usePlanetMenu().info
+
   return (
     <div>
       <div className={`textStyle-h1 text-center tablet:text-left`}>
@@ -250,26 +249,15 @@ function FixedHeight({ height }: { height: string }) {
   return <div className={`w-full ${height}`}></div>
 }
 
-export function Content({
-  planetData,
-  info,
-  onInfoSelect,
-}: {
-  planetData: PlanetData
-  info: InfoMenuItem
-  onInfoSelect: (info: InfoMenuItem) => void
-}) {
+export function Content({ planetData }: { planetData: PlanetData }) {
+  const planet = planetData.name
+
   return (
     <div className={`flex flex-col desktop:items-center`}>
-      <InfoMenu
-        className={`tablet:hidden`}
-        planet={planetData.name}
-        selected={info}
-        onSelect={onInfoSelect}
-      />
+      <InfoMenu planet={planet} className={`tablet:hidden`} />
       <div className={`desktop:flex desktop:flex-col desktop:items-end`}>
         <div className={`flex flex-col desktop:flex-row desktop:gap-x-[112px]`}>
-          <PlanetImage planet={planetData.name} info={info} />
+          <PlanetImage planet={planet} />
           <div
             className={twMerge(
               `flex flex-row items-center`,
@@ -277,13 +265,8 @@ export function Content({
               `desktop:flex-col desktop:w-[350px] desktop:px-0 desktop:pb-[87px] desktop:pt-32 justify-between`
             )}
           >
-            <PlanetText planetData={planetData} info={info} />
-            <InfoMenu
-              className={`hidden tablet:flex`}
-              planet={planetData.name}
-              selected={info}
-              onSelect={onInfoSelect}
-            />
+            <PlanetText planetData={planetData} />
+            <InfoMenu planet={planet} className={`hidden tablet:flex`} />
           </div>
         </div>
         <FixedHeight height={`h-8 tablet:h-[28px] desktop:hidden`} />
