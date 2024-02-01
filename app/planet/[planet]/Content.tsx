@@ -64,7 +64,7 @@ function InfoMenu({
                 `tablet:border-0 ${planetTabletBgColor.get(planet)}`,
               `desktop:w-full`,
               `desktop:h-12 desktop:px-[28px]`,
-              item !== selected && `hover:bg-gray/20`
+              item !== selected && `tablet:hover:bg-gray/20`
             )}
             key={index}
             role="menuitem"
@@ -77,7 +77,7 @@ function InfoMenu({
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <span className={`tablet:hidden`}>{item}</span>
+              <div className={`w-full tablet:hidden`}>{item}</div>
               <span className={`hidden tablet:inline`}>
                 {infoMenuItemsExtended[index]}
               </span>
