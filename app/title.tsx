@@ -13,7 +13,7 @@ export function FullMenu({
   className?: string
 }) {
   return (
-    <div className={`w-full flex flex-col items-center`}>
+    <div className={`w-full flex flex-col items-center desktop:w-fit`}>
       <ul
         className={twMerge(`flex flex-row gap-x-[33px]`, `${className}`)}
         role="menu"

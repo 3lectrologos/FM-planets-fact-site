@@ -1,15 +1,19 @@
 import {
   InfoMenuItem,
   infoMenuItems,
+  infoMenuItemsExtended,
   Planet,
   planetBgColor,
   planetBorderColor0,
   planetBorderColor100,
   PlanetData,
   planetSVGSize,
+  planetSVGSizeDesktop,
   planetSVGSizeMobile,
   planetSVGSizeTablet,
   planetTabletBgColor,
+  planetTabletBorderColor100,
+  surfaceSVGSizeDesktop,
   surfaceSVGSizeMobile,
   surfaceSVGSizeTablet,
 } from '@/app/types'
@@ -33,7 +37,7 @@ function InfoMenu({
   }
 
   return (
-    <div className={twMerge(`flex flex-col`, `${className}`)}>
+    <div className={twMerge(`flex flex-col desktop:w-full`, `${className}`)}>
       <ul
         className={twMerge(
           `flex flex-row justify-between px-6`,
@@ -46,27 +50,35 @@ function InfoMenu({
             className={twMerge(
               `textStyle-h3 w-[80px] pt-5 pb-4 text-center`,
               `cursor-pointer transition-colors`,
+              `tablet:w-[281px] tablet:h-10 tablet:px-5`,
+              `tablet:flex tablet:flex-col tablet:justify-center tablet:py-0`,
               item === selected ? `text-white` : `text-white/50`,
               item === selected
                 ? `border-b-[4px] ${planetBorderColor100.get(planet)}`
                 : `border-b-[4px] ${planetBorderColor0.get(planet)}`,
               `tablet:text-white tablet:text-left`,
-              `tablet:w-[281px] tablet:h-10 tablet:py-2 tablet:px-5`,
               item !== selected
                 ? `tablet:border-[1px] tablet:border-white/20`
-                : `tablet:border-[1px] tablet:border-venus`,
+                : `tablet:border-[1px] ${planetTabletBorderColor100.get(planet)}`,
               item === selected &&
-                `tablet:border-0 ${planetTabletBgColor.get(planet)}`
+                `tablet:border-0 ${planetTabletBgColor.get(planet)}`,
+              `desktop:w-full`,
+              `desktop:h-12 desktop:px-[28px]`
             )}
             key={index}
             role="menuitem"
             tabIndex={0}
             onClick={() => onClick(item)}
           >
-            <span className={`hidden tablet:inline mr-[14px] text-white/50`}>
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            {item}
+            <div>
+              <span className={`hidden tablet:inline mr-[14px] text-white/50`}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className={`tablet:hidden`}>{item}</span>
+              <span className={`hidden tablet:inline`}>
+                {infoMenuItemsExtended[index]}
+              </span>
+            </div>
           </li>
         ))}
       </ul>
@@ -78,12 +90,17 @@ function InfoMenu({
 function PlanetNumber({ label, value }: { label: string; value: string }) {
   return (
     <div
-      className={`w-full px-6 py-4 border border-1 border-white/20 tablet:px-4 tablet:pt-4 tablet:pb-5`}
+      className={twMerge(
+        `w-full px-6 py-4 border border-white/20`,
+        `tablet:px-4 tablet:pt-4 tablet:pb-5`,
+        `desktop:flex desktop:flex-col desktop:justify-center desktop:w-[255px] desktop:h-32 desktop:py-0 desktop:px-6`
+      )}
     >
       <div
         className={twMerge(
           `flex flex-row items-center justify-between`,
-          `tablet:flex-col tablet:items-start tablet:gap-y-2`
+          `tablet:flex-col tablet:items-start tablet:gap-y-2`,
+          `desktop:gap-y-1`
         )}
       >
         <span className={`textStyle-h4 text-white/50`}>{label}</span>
@@ -98,7 +115,8 @@ function PlanetNumbers({ planetData }: { planetData: PlanetData }) {
     <div
       className={twMerge(
         `flex flex-col gap-y-2 px-6`,
-        `tablet:flex-row tablet:gap-x-3 tablet:px-10`
+        `tablet:flex-row tablet:gap-x-3 tablet:px-10`,
+        `desktop:px-0 desktop:gap-x-[30px]`
       )}
     >
       <PlanetNumber label={`rotation time`} value={planetData.rotation} />
@@ -115,12 +133,16 @@ function Source({ source }: { source: string }) {
       className={twMerge(
         `flex flex-row items-center justify-center`,
         `text-white font-body text-[14px] font-extralight tracking-wider`,
-        `tablet:justify-start`
+        `tablet:justify-start`,
+        `desktop:text-[16px]`
       )}
     >
       <span className={`opacity-50 mr-0.5`}>Source</span>
       <span className={`opacity-50 mr-1`}>:</span>
-      <Link className={`font-medium underline opacity-50 mr-1`} href={source}>
+      <Link
+        className={`font-medium underline opacity-50 mr-1 desktop:mr-2`}
+        href={source}
+      >
         Wikipedia
       </Link>
       <div className={`w-3 h-3`}>
@@ -145,7 +167,8 @@ function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
     <div
       className={twMerge(
         `relative flex flex-col h-[300px] items-center justify-center`,
-        `tablet:h-[460px]`
+        `tablet:h-[460px]`,
+        `desktop:h-[754px] desktop:w-[670px]`
       )}
     >
       {info !== 'structure' && (
@@ -153,7 +176,8 @@ function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
           className={twMerge(
             `relative`,
             planetSVGSizeMobile.get(planet),
-            planetSVGSizeTablet.get(planet)
+            planetSVGSizeTablet.get(planet),
+            planetSVGSizeDesktop.get(planet)
           )}
         >
           <Image
@@ -168,7 +192,8 @@ function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
           className={twMerge(
             `relative`,
             planetSVGSizeMobile.get(planet),
-            planetSVGSizeTablet.get(planet)
+            planetSVGSizeTablet.get(planet),
+            planetSVGSizeDesktop.get(planet)
           )}
         >
           <Image
@@ -181,10 +206,11 @@ function PlanetImage({ planet, info }: { planet: Planet; info: InfoMenuItem }) {
       <div
         className={twMerge(
           `absolute bottom-10 left-1/2 transform -translate-x-1/2`,
-          `tablet:bottom-12`,
+          `tablet:bottom-12 desktop:bottom-24`,
           `${info === 'surface' ? 'visible' : 'invisible'}`,
           surfaceSVGSizeMobile,
-          surfaceSVGSizeTablet
+          surfaceSVGSizeTablet,
+          surfaceSVGSizeDesktop
         )}
       >
         <Image
@@ -219,7 +245,7 @@ function PlanetText({
       >
         {planetData[info]['content']}
       </div>
-      <FixedHeight height={`h-8`} />
+      <FixedHeight height={`h-5`} />
       <Source source={planetData[info]['source']} />
     </div>
   )
@@ -239,26 +265,32 @@ export function Content({
   onInfoSelect: (info: InfoMenuItem) => void
 }) {
   return (
-    <div className={`flex flex-col`}>
+    <div className={`flex flex-col desktop:items-center`}>
       <InfoMenu
         className={`tablet:hidden`}
         planet={planetData.name}
         selected={info}
         onSelect={onInfoSelect}
       />
-      <PlanetImage planet={planetData.name} info={info} />
-      <div
-        className={`flex flex-row items-center tablet:px-10 tablet:gap-x-[69px]`}
-      >
-        <PlanetText planetData={planetData} info={info} />
-        <InfoMenu
-          className={`hidden tablet:flex`}
-          planet={planetData.name}
-          selected={info}
-          onSelect={onInfoSelect}
-        />
+      <div className={`flex flex-col desktop:flex-row desktop:gap-x-[112px]`}>
+        <PlanetImage planet={planetData.name} info={info} />
+        <div
+          className={twMerge(
+            `flex flex-row items-center`,
+            `tablet:px-10 tablet:gap-x-[69px]`,
+            `desktop:flex-col desktop:w-[350px] desktop:px-0 desktop:pb-[87px] desktop:pt-32 justify-between`
+          )}
+        >
+          <PlanetText planetData={planetData} info={info} />
+          <InfoMenu
+            className={`hidden tablet:flex`}
+            planet={planetData.name}
+            selected={info}
+            onSelect={onInfoSelect}
+          />
+        </div>
       </div>
-      <FixedHeight height={`h-8 tablet:h-[28px]`} />
+      <FixedHeight height={`h-8 tablet:h-[28px] desktop:hidden`} />
       <PlanetNumbers planetData={planetData} />
       <FixedHeight height={`h-12`} />
     </div>

@@ -48,6 +48,17 @@ export const planetBorderColor100 = new Map<Planet, string>([
   ['Neptune', 'border-neptune/100'],
 ])
 
+export const planetTabletBorderColor100 = new Map<Planet, string>([
+  ['Mercury', 'tablet:border-mercury/100'],
+  ['Venus', 'tablet:border-venus/100'],
+  ['Earth', 'tablet:border-earth/100'],
+  ['Mars', 'tablet:border-mars/100'],
+  ['Jupiter', 'tablet:border-jupiter/100'],
+  ['Saturn', 'tablet:border-saturn/100'],
+  ['Uranus', 'tablet:border-uranus/100'],
+  ['Neptune', 'tablet:border-neptune/100'],
+])
+
 export const planetBorderColor0 = new Map<Planet, string>([
   ['Mercury', 'border-mercury/0'],
   ['Venus', 'border-venus/0'],
@@ -72,6 +83,11 @@ export const planetCircleColor = new Map<Planet, string>([
 
 export type InfoMenuItem = 'overview' | 'structure' | 'surface'
 export const infoMenuItems = ['overview', 'structure', 'surface'] as const
+export const infoMenuItemsExtended = [
+  'overview',
+  'internal structure',
+  'surface geology',
+] as const
 
 export type PlanetData = {
   name: Planet
@@ -134,3 +150,16 @@ export const planetSVGSizeTablet = new Map<Planet, string>([
   ['Neptune', 'tablet:w-[286.75px] tablet:h-[286.75px]'],
 ])
 export const surfaceSVGSizeTablet = 'tablet:w-[132px] tablet:h-[132px]'
+
+const sizeMultiplierDesktop = 1
+export const planetSVGSizeDesktop = new Map<Planet, string>([
+  ['Mercury', 'desktop:w-[290px] desktop:h-[290px]'],
+  ['Venus', 'desktop:w-[400px] desktop:h-[400px]'],
+  ['Earth', 'desktop:w-[450px] desktop:h-[450px]'],
+  ['Mars', 'desktop:w-[336px] desktop:h-[336px]'],
+  ['Jupiter', 'desktop:w-[582px] desktop:h-[582px]'],
+  ['Saturn', 'desktop:w-[668px] desktop:h-[668px]'],
+  ['Uranus', 'desktop:w-[458px] desktop:h-[458px]'],
+  ['Neptune', 'desktop:w-[450px] desktop:h-[450px]'],
+])
+export const surfaceSVGSizeDesktop = 'desktop:w-[200px] desktop:h-[200px]'

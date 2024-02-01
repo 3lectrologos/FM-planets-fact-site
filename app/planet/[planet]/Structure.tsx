@@ -30,22 +30,26 @@ export default function Structure({ planetData }: { planetData: PlanetData }) {
     <div
       className={twMerge(
         `flex flex-col min-h-dvh min-w-fit bg-background text-white`,
-        `bg-[url('/images/background-stars.svg')] bg-left-top bg-no-repeat`
+        `bg-[url('/images/background-stars.svg')] bg-left-top bg-repeat`
       )}
     >
       <div className={`flex flex-col justify-center`}>
-        <FixedHeight height={`h-4 tablet:h-8`} />
-        <Title
-          className={`px-6`}
-          isMenuOpen={menuOpen}
-          onMenuToggle={onMenuToggle}
-        />
-        <FixedHeight height={`h-4 tablet:h-10`} />
-        <FullMenu
-          className={`hidden tablet:flex`}
-          currentPlanet={planetData.name as Planet}
-          onClick={onPlanetSelect}
-        />
+        <FixedHeight height={`h-4 tablet:h-8 desktop:h-[22px]`} />
+        <div
+          className={`flex flex-col desktop:flex-row desktop:items-center desktop:justify-between desktop:pl-8 desktop:pr-10`}
+        >
+          <Title
+            className={`px-6 desktop:px-0`}
+            isMenuOpen={menuOpen}
+            onMenuToggle={onMenuToggle}
+          />
+          <FixedHeight height={`h-4 tablet:h-10 desktop:hidden`} />
+          <FullMenu
+            className={`hidden tablet:flex`}
+            currentPlanet={planetData.name as Planet}
+            onClick={onPlanetSelect}
+          />
+        </div>
         <FixedHeight height={`h-0 tablet:h-[27px]`} />
         <div className={`w-full h-px bg-white/20`} />
         {menuOpen && (

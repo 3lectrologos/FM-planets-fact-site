@@ -36,24 +36,23 @@
 
 .textStyle-h3 {
   @apply font-body;
-  @apply text-[11px] tablet:text-[11px] desktop:text-[12px];
-  @apply leading-[10.8px] tablet:leading-[25px] desktop:leading-[25px];
-  @apply tracking-[2.2px] tablet:tracking-[2.3px] desktop:tracking-[2.571px];
+  @apply text-[11px] tablet:text-[11px] desktop:text-[15px];
+  @apply tracking-[2.2px] tablet:tracking-[2.3px] desktop:tracking-[3px];
   @apply font-medium uppercase;
 }
 
 .textStyle-h4 {
   @apply font-body;
-  @apply text-[9.5px] tablet:text-[9.5px] desktop:text-[12px];
-  @apply leading-[13px] tablet:leading-[13px] desktop:leading-[20px];
-  @apply tracking-[1.2px] tablet:tracking-[1.2px] desktop:tracking-[1.5px];
+  @apply text-[9.5px] tablet:text-[9.5px] desktop:text-[13px];
+  @apply leading-[13px] tablet:leading-[13px] desktop:leading-[25px];
+  @apply tracking-[1.2px] tablet:tracking-[1.2px] desktop:tracking-[1.8px];
   @apply font-normal uppercase;
 }
 
 .textStyle-body {
   @apply font-body;
-  @apply text-[13px] tablet:text-[13px] desktop:text-[14px];
+  @apply text-[13px] tablet:text-[13px] desktop:text-[17px];
   @apply leading-[22px] tablet:leading-[22px] desktop:leading-[25px];
-  @apply tracking-[0.7px] tablet:tracking-[0.7px] desktop:tracking-[1px];
+  @apply tracking-[0.7px] tablet:tracking-[0.7px] desktop:tracking-[0.7px];
   @apply font-extralight;
 }
