@@ -55,7 +55,8 @@ function InfoMenu({
               item !== selected
                 ? `tablet:border-[1px] tablet:border-white/20`
                 : `tablet:border-[1px] tablet:border-venus`,
-              item === selected && `tablet:border-0 tablet:bg-venus`
+              item === selected &&
+                `tablet:border-0 ${planetTabletBgColor.get(planet)}`
             )}
             key={index}
             role="menuitem"
@@ -82,7 +83,7 @@ function PlanetNumber({ label, value }: { label: string; value: string }) {
       <div
         className={twMerge(
           `flex flex-row items-center justify-between`,
-          `tablet:flex-col tablet:items-start tablet:gap-y-[6px]`
+          `tablet:flex-col tablet:items-start tablet:gap-y-2`
         )}
       >
         <span className={`textStyle-h4 text-white/50`}>{label}</span>
@@ -213,7 +214,7 @@ function PlanetText({
       <div
         className={twMerge(
           `textStyle-body px-6 text-center text-white/85 text-pretty`,
-          `tablet:px-0 tablet:text-left`
+          `tablet:px-0 tablet:text-left tablet:min-h-[110px]`
         )}
       >
         {planetData[info]['content']}

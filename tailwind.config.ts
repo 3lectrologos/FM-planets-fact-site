@@ -34,7 +34,7 @@ const config: Config = {
       body: ['var(--font-body)'],
     },
     screens: {
-      tablet: '640px',
+      tablet: '730px',
       desktop: '1280px',
     },
   },

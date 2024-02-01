@@ -39,7 +39,7 @@
   @apply text-[11px] tablet:text-[11px] desktop:text-[12px];
   @apply leading-[10.8px] tablet:leading-[25px] desktop:leading-[25px];
   @apply tracking-[2.2px] tablet:tracking-[2.3px] desktop:tracking-[2.571px];
-  @apply font-normal uppercase;
+  @apply font-medium uppercase;
 }
 
 .textStyle-h4 {
@@ -53,7 +53,7 @@
 .textStyle-body {
   @apply font-body;
   @apply text-[13px] tablet:text-[13px] desktop:text-[14px];
-  @apply leading-[23px] tablet:leading-[24px] desktop:leading-[25px];
+  @apply leading-[22px] tablet:leading-[22px] desktop:leading-[25px];
   @apply tracking-[0.7px] tablet:tracking-[0.7px] desktop:tracking-[1px];
   @apply font-extralight;
 }
